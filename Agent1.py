@@ -8,8 +8,10 @@ import sys, json, urllib.request, ssl, socket
 url='https://jsonplaceholder.typicode.com'
 param='/posts/1'
 
+taskCompleted = False
+
 try:
- response = urllib.request.urlopen(url+param))
+ response = urllib.request.urlopen(url+param)
  payload = response.read()
 
  #SSL/TLS connection
@@ -26,7 +28,7 @@ try:
  payloadJSON = json.loads(payload.decode('utf-8'))
  with open('payload.json', 'w') as outFile:
         jsonApp = outFile.write(json.dumps(payloadJSON))
-
+ taskCompleted = True
 
 except Exception as e:
  print(e)
