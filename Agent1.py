@@ -1,5 +1,5 @@
 import sys, json, urllib.request, ssl, socket
-
+from pymongo import MongoClient
 
 # Project App 1
 # Purpose: retrieve JSON paylaod and send it with TLS to App 2
@@ -34,6 +34,15 @@ try:
  payloadJSON = json.loads(payload.decode('utf-8'))
  with open('payload.json', 'w') as outFile:
         jsonApp = outFile.write(json.dumps(payloadJSON))
+
+
+ #saving workflow action
+ client = MongoClient('localhost', 27017)
+ db = client.Team2
+ collection = db.agent1
+ print("Saved workflow action")
+ post_id = collection.insert({"action" : "Payload Sent"})
+
 
 
 except Exception as e:
