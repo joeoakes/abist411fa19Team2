@@ -15,7 +15,8 @@ try:
         while True:
                 print("accept connections from outside")
                 (clientsocket, address) = ssl_sock.accept()
-                print(clientsocket.recv(4096))
+                data = clientsocket.recv(1024)
+                print(data)
 except Exception as e:
         print(e)
         ssl_sock.close()
