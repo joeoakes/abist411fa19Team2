@@ -1,4 +1,4 @@
-import pysftp, sys, smtplib, hashlib, Pyro4, json
+import pysftp, sys, smtplib, hashlib, Pyro4, json, zlib
 from email.mime.text import MIMEText
 
 #Connection permit
@@ -62,7 +62,10 @@ class PayloadData(object):
         def get_payload(self, data):
                 return "Here is your paylaod:\n"\
                         "{0}.".format(data)
-
+# Compression
+data_bytes = bytes(data, 'UTF-8')
+payloadComp = zlib.compress(data_bytes)
+print("Compressing the json object:", payloadComp)
 
 print("Creating uri")
 #create a pyro daemon
