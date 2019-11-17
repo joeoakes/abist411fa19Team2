@@ -60,7 +60,8 @@ with open ('payloadReceive.json') as json_data:
 # create a class of payload data
 @Pyro4.expose
 class PayloadData(object):
-        def get_payload(self, data):
+        def get_payload(self):
+                data = dataCompress
                 return "Here is your paylaod:\n"\
                         "{0}.".format(data)
 # Compression
