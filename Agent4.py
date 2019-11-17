@@ -1,6 +1,5 @@
-\
-
 import Pyro4, json, zlib, pika
+from pymongo import MongoClient
 
 
 try:
@@ -9,9 +8,8 @@ try:
     print(PayloadData.get_payload())
 
     #payloadDecomp = zlib.decompress(payloadComp)
-    
-    
-    
+
+
     print("Connecting to App 1")
     connection = pika.BlockingConnection(pika.ConnectionParameters('localhost'))
     channel = connection.channel()
@@ -19,8 +17,12 @@ try:
     channel.queue_declare(queue = 'hello')
     channel.basic_publish(exchange = '', routing_key = 'hello', body = 'Hello app 1')
     print(" [x] Sent 'Hello App 1'")
-    
+
+    client = MongoClient('localhost',27017)
+    db = client.Team2
+    collection = db.agent4
+    print("Saved workflow action")
+    post_id = collection.insert({"action": "Received Payload"})
+
 except Exception as e:
     print(e)
-
-
