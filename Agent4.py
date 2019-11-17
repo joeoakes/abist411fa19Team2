@@ -4,13 +4,9 @@ import Pyro4, json, zlib, pika
 
 
 try:
-    #open file and read it
-    with open ('payloadReceive.json') as json_data:
-        data = json_data.read()
-
     uri = input("What is the Pyro uri of the greeting object? ").strip()
     PayloadData = Pyro4.Proxy(uri)
-    print(PayloadData.get_payload(data))
+    print(PayloadData.get_payload())
 
     #payloadDecomp = zlib.decompress(payloadComp)
     
