@@ -51,9 +51,10 @@ try:
 except:
         print("Log exception 2: ", sys.exc_info()[0])
 
+
 #Open the json file and save the contents to data
 with open ('payloadReceive.json') as json_data:
-        data = json_data.read()
+        dataCompress = json_data.read()
 
 
 # create a class of payload data
@@ -63,7 +64,7 @@ class PayloadData(object):
                 return "Here is your paylaod:\n"\
                         "{0}.".format(data)
 # Compression
-data_bytes = bytes(data, 'UTF-8')
+data_bytes = bytes(dataCompress, 'UTF-8')
 payloadComp = zlib.compress(data_bytes)
 print("Compressing the json object:", payloadComp)
 
