@@ -22,7 +22,7 @@ try:
     db = client.Team2
     collection = db.agent4
     print("Saved workflow action")
-    post_id = collection.insert({"action": "Received Payload"})
+    post_id = collection.insert({"action": "Received JSON Pyro4"})
 
 except Exception as e:
     print(e)

@@ -1,5 +1,6 @@
 import pysftp, sys, smtplib, hashlib, Pyro4, json, zlib
 from email.mime.text import MIMEText
+from pymongo import MongoClient
 
 #Connection permit
 cnopts = pysftp.CnOpts()
@@ -48,6 +49,13 @@ try:
         s = smtplib.SMTP_SSL('authsmtp.psu.edu', 465)
         s.sendmail(fromAddress, [toAddress], msg.as_string())
         s.quit()
+
+        client = MongoClient('localhost',27017)
+        db = client.Team2
+        collection = db.agent3
+        print("Saved workflow action")
+        post_id = collection.insert({"action": "Sent JSON Pyro4"})
+
 except:
         print("Log exception 2: ", sys.exc_info()[0])
 
