@@ -1,6 +1,6 @@
 #Agent 2
 
-import socket, ssl, pysftp, json, hashlib, hmac
+import socket, ssl, pysftp, json, hashlib, hmac, datetime
 from pymongo import MongoClient
 
 cnopts = pysftp.CnOpts()
@@ -24,7 +24,7 @@ try:
         db = client.Team2
         collection =db.agent2
         print("Saved workflow action")
-        post_id = collection.insert({"action": "Created connection"})
+        post_id = collection.insert({"action": "Created connection", "time" : datetime.datetime.now()})
 
 
         while True:

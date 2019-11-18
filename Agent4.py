@@ -1,4 +1,4 @@
-import Pyro4, json, zlib, pika
+import Pyro4, json, zlib, pika, datetime
 from pymongo import MongoClient
 
 
@@ -22,7 +22,7 @@ try:
     db = client.Team2
     collection = db.agent4
     print("Saved workflow action")
-    post_id = collection.insert({"action": "Received JSON Pyro4"})
+    post_id = collection.insert({"action": "Received JSON Pyro4", "time" : datetime.datetime.now()})
 
 except Exception as e:
     print(e)

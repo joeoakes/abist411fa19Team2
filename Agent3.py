@@ -1,4 +1,4 @@
-import pysftp, sys, smtplib, hashlib, Pyro4, json, zlib
+import pysftp, sys, smtplib, hashlib, Pyro4, json, zlib, datetime
 from email.mime.text import MIMEText
 from pymongo import MongoClient
 
@@ -32,8 +32,8 @@ try:
 
         #set up the email address and subject
         print("Emailing")
-        fromAddress = 'yvh5254@psu.edu'
-        toAddress = 'yvh5254@psu.edu'
+        fromAddress = 'dck5200@psu.edu'
+        toAddress = 'dck5200@psu.edu'
         subject = 'Payload send'
 
         #open the json file and save it to msg
@@ -54,7 +54,7 @@ try:
         db = client.Team2
         collection = db.agent3
         print("Saved workflow action")
-        post_id = collection.insert({"action": "Sent JSON Pyro4"})
+        post_id = collection.insert({"action": "Sent JSON Pyro4", "time" : datetime.datetime.now()})
 
 except:
         print("Log exception 2: ", sys.exc_info()[0])
